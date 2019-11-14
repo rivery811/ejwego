@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wego.web.community.CommunityMapper">
+
+
+ 
+      <insert id="insertCommu" parameterType="com.wego.web.community.Community">
+     insert into community ( rating,img,uid, comments, msg, boardType, title, content) values(
+        #{rating},#{img},#{uid},#{comments},#{msg},#{boardType},#{title},#{content}
+    )
+   </insert>
+   
+     <insert id="insertContent" parameterType="com.wego.web.community.Community">
+       insert into community (content) values (
+           #{content}
+      )
+   </insert>
+ 
+ 
+    <select id="existId" resultType="int"> 
+      select count(*)
+      from user
+      where uid like #{uid}
+    </select>
+    
+      <select id="countUsers" resultType="int" >
+     select count(*)
+	from user
+    </select>
+    
+        <select id="selectpagination"  resultType="com.wego.web.community.Community" parameterType="com.wego.web.pxy.PageProxy">
+	 select *	from community
+			ORDER BY artseq DESC  
+	Limit ${startRow}, ${pageSize}
+   </select>
+   	<select id="countCommunity" resultType="string"> 
+      select count(*)
+      from community
+    </select>
+   
+    
+</mapper>

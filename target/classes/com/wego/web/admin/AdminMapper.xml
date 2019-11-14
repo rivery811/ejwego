@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wego.web.admin.AdminMapper">
+<select id="createAdmin" parameterType="hashmap">
+		${CREATE_TABLE}
+	</select>
+	
+	<select id="createImg" parameterType="hashmap">
+		${CREATE_TABLE}
+	</select>
+
+		<select id="countAdmins" resultType="int">
+		SELECT COUNT(*) COUNT FROM ADMIN
+		</select>
+		
+		<select id="drop" parameterType="hashmap">
+		${DROP_TABLE}
+		</select>
+		
+	<select id="selectAdminbyidpw" resultType="Admin" >
+     select *
+	from ADMIN
+	where EID like #{eid}
+	and PWD like #{pwd}
+    </select>
+    
+     
+      <insert id="insertAdminEid" parameterType="Admin">
+       insert into admin (eid,pwd,aname,addr,tel,pos,dep,privilege) values (
+          #{eid}, #{pwd}, #{aname},#{addr}, #{tel}, #{pos}, #{dep}, #{privilege}
+      )
+   </insert>
+</mapper>
